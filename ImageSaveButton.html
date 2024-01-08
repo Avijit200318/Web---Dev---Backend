@@ -1,0 +1,32 @@
+<!-- Add an "id" attribute to the image for easy access in JavaScript -->
+<div class="left bg-red-500 w-[50%] h-full">
+    <img id="postImage" src="/images/uploads/<%= post.image %>" class="w-full h-full object-cover" alt="">
+</div>
+
+<!-- ... (your existing code) ... -->
+
+<div class="w-full inline-block">
+    <!-- Add an "id" attribute to the anchor tag for easy access in JavaScript -->
+    <a id="saveButton" class="bg-red-600 text-white float-right px-5 py-2 rounded-full relative left-6 bottom-4 transition-all duration-500 hover:bg-red-500" href="#">Save</a>
+</div>
+
+<!-- ... (your existing code) ... -->
+
+<script>
+    document.getElementById('saveButton').addEventListener('click', function () {
+        // Get the image source
+        var imageUrl = document.getElementById('postImage').src;
+
+        // Create a temporary link element
+        var downloadLink = document.createElement('a');
+        downloadLink.href = imageUrl;
+        downloadLink.download = 'saved_image.jpg'; // You can set the desired filename
+
+        // Append the link to the body and simulate a click to trigger the download
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+
+        // Remove the link from the body
+        document.body.removeChild(downloadLink);
+    });
+</script>
